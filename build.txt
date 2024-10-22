@@ -1,0 +1,3 @@
+displayName = Olympus Mod (Chef Class)
+author = Marthoon &amp; The New TFIW
+version = 0.1

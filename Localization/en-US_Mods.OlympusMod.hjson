@@ -1,0 +1,40 @@
+Items: {
+	IronSkillet: {
+		DisplayName: Iron Skillet
+		Tooltip: ""
+	}
+
+	JellyChunk: {
+		DisplayName: Jelly Chunk
+		Tooltip: ""
+	}
+}
+
+Projectiles: {
+	GenericDish.DisplayName: Generic Dish
+	JellyChunkPro.DisplayName: Jelly Chunk Pro
+}
+
+DamageClasses.ChefClass.DisplayName: cooking damage
+
+Configs: {
+	OlympusConfig: {
+		DisplayName: Olympus Config
+
+		ChefUseFallbackRecipe: {
+			Label: Chef Use Fallback Recipe
+			Tooltip: ""
+		}
+	}
+}
+
+UI: {
+	RecipeBookButton: {
+		MouseHoverName: {
+			Close: Close Recipe Book
+			Open: Open Recipe Book
+		}
+	}
+}
+
+Keybinds.SwitchActiveRecipeKey.DisplayName: Switch Active Recipe Key
