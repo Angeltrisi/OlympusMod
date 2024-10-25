@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using OlympusMod.Utilities;
+using Terraria.ID;
 
 namespace OlympusMod.Content.Items.ChefClass.Cookwares
 {
@@ -6,11 +7,7 @@ namespace OlympusMod.Content.Items.ChefClass.Cookwares
     {
         public override void SetDefaults()
         {
-            Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.useTime = Item.useAnimation = 32;
-            Item.width = Item.height = 30;
-            Item.damage = 16;
-            Item.DamageType = OlympusMod.CookClass;
+            Item.DefaultToCookware(32, 32, 20, 6f, 8);
         }
     }
 }

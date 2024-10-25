@@ -31,6 +31,21 @@ namespace OlympusMod.Utilities
             item.DamageType = ModContent.GetInstance<ChefClass>();
             item.maxStack = 99;
         }
+        public static void DefaultToCookware(this Item item, int newWidth, int newHeight, int useTime, float shootSpeed, int damage)
+        {
+            item.width = newWidth;
+            item.height = newHeight;
+
+            item.useStyle = ItemUseStyleID.Shoot;
+            item.useTime = item.useAnimation = useTime;
+
+            item.shoot = ProjectileID.PurificationPowder;
+            item.shootSpeed = shootSpeed;
+
+            item.DamageType = OlympusMod.CookClass;
+            item.damage = damage;
+            item.noMelee = true;
+        }
         public static bool Exists(this Item item) => item != null && !item.IsAir;
         public static ChefPlayer GetChefPlayer(this Player player) => player.GetModPlayer<ChefPlayer>();
         public static bool IsLocalPlayer(this Player player) => player.whoAmI == Main.myPlayer;

@@ -47,7 +47,11 @@ namespace OlympusMod.Content.UI.Chef
         public override float ItemDrawSizeLimit => 32f;
         public override Func<Item, bool> isValid => (item) => item.ModItem is Ingredient;
         public override string Texture => recipeContainer % 3 == 0 ? ToCyanSlot : recipeContainer % 2 == 0 ? ToRedSlot : ToBlueSlot;
-        public override bool CanBeInteractedWith() => UILoader.GetUIState<RecipeBookGui>().recipeContainersOpen;
+        public override bool CanBeInteractedWith() => UILoader.GetUIState<RecipeBookGui>().recipeContainersOpen && recipeContainer < Main.LocalPlayer.GetChefPlayer().recipeSlotsVisible;
+        public override bool PreDraw(SpriteBatch spriteBatch)
+        {
+            return recipeContainer < Main.LocalPlayer.GetChefPlayer().recipeSlotsVisible;
+        }
         public override void PostDraw(SpriteBatch spriteBatch)
         {
             Texture2D highlightTex = ModContent.Request<Texture2D>("OlympusMod/Content/UI/UIElements/BasicSlotHighlight").Value;

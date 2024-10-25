@@ -74,6 +74,14 @@ namespace OlympusMod.Core.ChefClass
         }
         public override void PostUpdate()
         {
+            // must be done before recipe key use check to avoid indexing into an inactive recipe slot
+            for (int i = 0; i < recipeSlots.Length; i++)
+            {
+                recipeSlots[i].Active = true;
+                if (i >= recipeSlotsVisible)
+                    recipeSlots[i].Active = false;
+            }
+
             if (TrySwitchRecipe())
             {
                 SwitchRecipe();
@@ -108,13 +116,13 @@ namespace OlympusMod.Core.ChefClass
             dishType = -1;
             return false;
         }
-        public void ConsumeIngredients(params int[] ingredientTypes)
+        public void ConsumeIngredients(int recipeContainer)
         {
-            // todo: make this work with recipecontainer
-            for (int i = 0; i <  ingredientTypes.Length; i++)
+            RecipeContainer r = recipeSlots[recipeContainer];
+            foreach (Item ingredient in r)
             {
                 if (Main.rand.NextFloat() > ChanceNotToConsumeIngredients)
-                    Player.inventory.First(x => x.type == ingredientTypes[i]).stack--;
+                    ingredient.stack--;
             }
         }
     }

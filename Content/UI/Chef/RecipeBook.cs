@@ -102,12 +102,19 @@ namespace OlympusMod.Content.UI.Chef
                 return;
             Rectangle bounds = GetDimensions().ToRectangle();
             int widthElem = bounds.Width / recipeContainers.Length;
+            int activeWidth = widthElem * Main.LocalPlayer.GetChefPlayer().recipeSlotsVisible;
+            int height = 32 * 3;
             for (int i = 0; i < recipeContainers.Length; i++)
             {
-                recipeContainers[i].SetProperties(0f, widthElem * i, 32f, 32f * 3f);
+                recipeContainers[i].SetProperties(0f, widthElem * i, 32f, height);
             }
-            if (IsMouseHovering)
+            Point pos = GetDimensions().Position().ToPoint();
+            Rectangle activeBounds = new(pos.X, pos.Y, activeWidth, height);
+            if (activeBounds.Contains((int)Main.MouseScreen.X, (int)Main.MouseScreen.Y))
+            {
+                //Main.NewText(Main.LocalPlayer.mouseInterface, OlympusRandom.RandomColor());
                 Main.LocalPlayer.mouseInterface = true;
+            }
             Recalculate();
             base.Update(gameTime);
         }

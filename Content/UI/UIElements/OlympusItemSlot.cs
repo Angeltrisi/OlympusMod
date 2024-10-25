@@ -118,8 +118,14 @@ namespace OlympusMod.Content.UI.UIElements
             if (IsMouseOver)
                 Main.LocalPlayer.mouseInterface = true;
         }
+        public virtual bool PreDraw(SpriteBatch spriteBatch)
+        {
+            return true;
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (!PreDraw(spriteBatch))
+                return;
             var tex = ModContent.Request<Texture2D>(Texture).Value;
             spriteBatch.Draw(tex, GetDimensions().ToRectangle(), Color.White);
             if (!NoItem)

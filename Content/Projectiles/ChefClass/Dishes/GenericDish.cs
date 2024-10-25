@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Terraria;
 using Terraria.GameContent;
 
 namespace OlympusMod.Content.Projectiles.ChefClass.Dishes
@@ -29,7 +30,13 @@ namespace OlympusMod.Content.Projectiles.ChefClass.Dishes
             {
                 Ingredient ingredient = ingredients[i];
                 Texture2D texture = TextureAssets.Item[ingredient.Type].Value;
-
+                float goOut = 8f;
+                float radians = (MathF.Tau / ingredients.Length) * i;
+                Vector2 offset = (Vector2.UnitY * goOut).RotatedBy(radians + Main.GlobalTimeWrappedHourly);
+                Vector2 position = Projectile.Center + offset;
+                Color color = Lighting.GetColor(position.ToTileCoordinates());
+                Vector2 drawPosition = position - Main.screenPosition;
+                Main.EntitySpriteDraw(texture, drawPosition, null, color, 0f, texture.Size() * 0.5f, 1f, SpriteEffects.None);
             }
             return false;
         }
